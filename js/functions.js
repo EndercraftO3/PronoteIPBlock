@@ -1,4 +1,8 @@
 function makeRequests() {
+    if (EtabPrefix === undefined) {
+      alert("Please define an ID (instead of undefined)");
+      throw new Error("Undefined ID");
+    }
     if (EtabPrefix.length === 8) {
       alert("OK");
     for (var i = 0; i < 500; i++) {
@@ -25,6 +29,10 @@ function copyText(text, useUnfocused) {
 
 
   function AutomatedModeGUI() {
+    if (EtabPrefix === undefined) {
+      alert("Please define an ID (instead of undefined)");
+      throw new Error("Undefined ID");
+    }
     if (EtabPrefix.length === 8) {
       if (!corsActivated) {
         alert("When activating automated mode, you will need to open devtools using the F12 key, enter Console, paste the text that will be copied to clipboard and press enter. You can then let the page run in background.");
@@ -70,6 +78,10 @@ function copyText(text, useUnfocused) {
 }
 
 function AutomatedModeNotifyGUI() {
+  if (EtabPrefix === undefined) {
+    alert("Please define an ID (instead of undefined)");
+    throw new Error("Undefined ID");
+  }
   if (EtabPrefix.length === 8) {
     if ("Notification" in window) {
       if (!corsActivated) {
@@ -151,6 +163,10 @@ function AutomatedModeNotifyGUI() {
   }
 
   function NotifyUnban() {
+    if (EtabPrefix === undefined) {
+      alert("Please define an ID (instead of undefined)");
+      throw new Error("Undefined ID");
+    }
     if (EtabPrefix.length === 8) {
       if ("Notification" in window) {
         if (corsActivated === false) {
