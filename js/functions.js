@@ -236,6 +236,10 @@ function AutomatedModeNotifyGUI() {
   }
 
   function openPronote() {
+    if (EtabPrefix === undefined) {
+      alert("Please define an ID (instead of undefined)");
+      throw new Error("Undefined ID");
+    }
     PronoteWindow = window.open("https://" + EtabPrefix + ".index-education.net/pronote");
   };
 
