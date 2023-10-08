@@ -18,6 +18,7 @@
     var EtabPrefix = "";
     var corsActivated = false;
     let stopAutomatedModeTrigger;
+    var requestNumber = 250;
     // Other priority stuff
     function elid(id) {return document.getElementById(id)};
 
@@ -111,18 +112,18 @@
 </body>
 <img src="https://www.index-education.com/contenu/img/fr/logo-pronote.svg" alt="Pronote" title="Pronote logo (launch state check)" width="200" height="50" id="pronote-logo" onclick="getPronoteState()"><br>
 <img src="imgs/cors-disabled.png" id="cors-support-toggle" alt="CORS" title="CORS support toggle" onclick="corsToggle()" class="align-right" style="width: 95px; height: 95px;">
-    <button onclick="makeRequests()"><b>Make (1000) requests fast</b></button>
+    <button onclick="makeRequests()" id="make-requests"><b>Make (250) requests to ban</b></button>
     <br><br>
-    <button onclick="openPronote()"><b><big>Open Pronote</big></b></button>
+    <button onclick="openPronote()" id="open-pronote"><b><big>Open Pronote</big></b></button>
     <br><br>
-    <button onclick="AutomatedModeGUI()"><font color = "red"><b>Activate automated mode</b></font></button>
+    <button onclick="AutomatedModeGUI()" id="automated-mode"><font color = "red"><b>Activate automated mode</b></font></button>
     <br><br>
-    <button onclick="AutomatedModeNotifyGUI()"><font color = "red"><b>Activate automated mode (with notifications)</b></font></button>
+    <button onclick="AutomatedModeNotifyGUI()" id="automated-mode-notifications"><font color = "red"><b>Activate automated mode (with notifications)</b></font></button>
     <br><br>
-    <button onclick="StopAutomatedMode()"><font color = "red">Stop automated mode</font></button>
+    <button onclick="StopAutomatedMode()" id="stop-automated-mode"><font color = "red">Stop automated mode</font></button>
   </b>
-  <input type="text" id="EtabPrefixInput" placeholder="ID of your school" title="located behind '.index-education.net', for example e212074g in e212074g.index-education.net" name="name" autocomplete="username"/>
-<button onclick="setPrefix()">Use ID</button>
+  <input type="text" id="etab-prefix-input" placeholder="ID of your school" title="located behind '.index-education.net', for example e212074g in e212074g.index-education.net" name="name" autocomplete="username"/>
+<button onclick="setPrefix()" id="set-etab-prefix">Use ID</button>
 <br><br>
 <p id="chrome-user-agent-alert" style="display: none;"><font color="white">[Chrome] If you need to change your user agent to look like someone else, go to devtools, show network conditions and set the user agent string. This is reset back to use browser default when closing devtools or reloading the page. <b>You can also do this with automated mode.</b></p>
 <br>
@@ -135,8 +136,8 @@
       height: 75px;
   }
 </style>
-<textarea id="UserAgentDisplay" readonly></textarea>
+<textarea id="user-agent-display" readonly></textarea>
 <br><br>
-<button onclick="NotifyUnban()">Notify for unbans</button>
+<button onclick="NotifyUnban()" id="notify-unbans">Notify for unbans</button>
 <br>
 </html>
