@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", function() {
-  const EtabPrefixInput = elid("EtabPrefixInput");
+  const EtabPrefixInput = elid("etab-prefix-input");
   if (EtabPrefix !== "") {EtabPrefixInput.value = EtabPrefix};
   if (urlParams.has('id') === true && urlParams.get('id').length === 8) {
     EtabPrefixInput.value = urlParams.get('id')} else {
@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", function() {
 });
 
 window.addEventListener("DOMContentLoaded", function() {
-  var UserAgentDisplay = elid("UserAgentDisplay");
+  var UserAgentDisplay = elid("user-agent-display");
   if (UserAgentDisplay) {
     UserAgentDisplay.value = navigator.userAgent;
   };
