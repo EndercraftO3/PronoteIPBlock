@@ -14,4 +14,9 @@ The CORS toggle is located at the right.
 The Pronote logo can also be used to check the banned state when you click it (CORS only). It autochecks until an error is encountered. If colored, then you are unbanned. If grey, then you are banned. If yellowish then an error happened.
 The 1000 requests number isn't necessary, usually around 300-500 does the job but I never bothered to modify it :) I probably will when I find a small but reliable number.
 
+#Password
+When you load the page, a password bow appears. The aim is not at security but to stop inexperienced users from discovering the method and from using this so it doesn't spread.
+
+
+
 Hope you enjoy (just don't openly do it in front of everyone !), it can be used to make people laugh or become a bit angry.
