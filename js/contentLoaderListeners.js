@@ -9,7 +9,7 @@ window.addEventListener("DOMContentLoaded", function() {
       EtabPrefix = EtabPrefixInput.value;
     }
   }
-  if (urlParams.has('bypass-password') === true && urlParams.get('bypass-password') === 'mobile') {elid("hide-content").remove()};
+  if (urlParams.has('bypass-password') === true && urlParams.get('bypass-password') === 'mobile') {elid("password").remove()};
 });
 
 window.addEventListener("DOMContentLoaded", function() {
