@@ -1,7 +1,7 @@
 # PronoteIPblock
 Yeah, I made this to block our own IP address. It's pretty fun to see people's reactions I guess.
 
-### **Important: ** 
+### Important:
 This doesn't prevent everyone from accessing Pronote, only those with the same IP address as you which in the case of computers where you study is everyone because the IP address is the same for everyone.
 
 # How to use :
