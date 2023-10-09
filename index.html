@@ -5,10 +5,35 @@
   <style>
   .align-right {
     position: absolute;
-    right: 100px;
-    
     padding: 10px;
-  }</style>
+    left: 90%;
+    z-index: 10;
+    
+}
+
+textarea {
+    border: 1px solid #57009e;
+    padding: 5px;
+    width: 300px;
+    height: 75px;
+}
+
+.hide-content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(48, 0, 0); /* Use a transparent background color */
+    z-index: 10; /* Ensure it's on top */
+}
+
+#UI {
+    position: relative; /* Set position to relative */
+    z-index: 0; /* Ensure it's on top of hide-content */
+}
+
+  </style>
   <script>
     // Define variables
     var PronoteAutoBanWindow;
@@ -22,18 +47,6 @@
     // Other priority stuff
     function elid(id) {return document.getElementById(id)};
 
-    function copyText(text, useUnfocused) {
-  if (useUnfocused === true) {
-    var tempInput = document.createElement("textarea");
-    tempInput.value = text;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    tempInput.setSelectionRange(0, 99999);
-    document.execCommand("copy");
-    document.body.removeChild(tempInput);
-  } else {navigator.clipboard.writeText(text)}
-}
-
     let userExecutedFunctions;
     fetch("./txt/userExecutedFunctions.json")
       .then((response) => {
@@ -43,7 +56,7 @@
        userExecutedFunctions = JSON.parse(JSON.stringify(userExecutedFunctionsTemp));
       })
       .catch((error) => {
-        alert("Error fetching userExecutedFunctions:" + error)
+        alert("Error fetching userExecutedFunctions:" + error);
         throw new Error("Error fetching userExecutedFunctions:" + error);
       });
 
@@ -60,15 +73,15 @@
       var urlPrefix = urlParams.get('id');
       if (urlPrefix.length === 8) {
         console.log(urlPrefix + " has been set as ID from url parameters");
-        EtabPrefix = urlPrefix
+        EtabPrefix = urlPrefix;
       } else {
         console.warn(urlPrefix + " is available from URL parameters but has not been set as ID because it doesn't match format");
       }
     } else {
-      const EtabPrefixCookie = getCookie("EtabPrefix")
+      const EtabPrefixCookie = getCookie("EtabPrefix");
       if (EtabPrefixCookie !== "") {
         if (EtabPrefixCookie.length === 8) {
-          EtabPrefix = EtabPrefixCookie
+          EtabPrefix = EtabPrefixCookie;
           console.log(EtabPrefixCookie + " has been set as ID from cookies");
         } else {
           console.warn(EtabPrefixCookie + " is available from cookies but has not been set as ID because it doesn't match format");
@@ -87,9 +100,9 @@
             .then(data => {
               const logo = document.getElementById("pronote-logo");
               if (data.includes('Votre adresse IP est provisoirement suspendue!') || data.includes('Your IP address is temporarily suspended!')) {
-                logo.style = "filter: grayscale(100%);"
+                logo.style = "filter: grayscale(100%);";
               } else {
-                logo.style = "filter: grayscale(0%);"
+                logo.style = "filter: grayscale(0%);";
               }
             })
             .catch(error => {
@@ -102,42 +115,38 @@
         }, 5000);
       } else {
         alert("Please enable the CORS support switch first.");
-        throw new Error("CORS support isn't enabled")
+        throw new Error("CORS support isn't enabled");
       }
     }
   </script>
 </head>
-<body bgcolor="black">
-  <!-- HTML content of your website -->
-</body>
-<img src="https://www.index-education.com/contenu/img/fr/logo-pronote.svg" alt="Pronote" title="Pronote logo (launch state check)" width="200" height="50" id="pronote-logo" onclick="getPronoteState()"><br>
-<img src="imgs/cors-disabled.png" id="cors-support-toggle" alt="CORS" title="CORS support toggle" onclick="corsToggle()" class="align-right" style="width: 95px; height: 95px;">
-    <button onclick="makeRequests()" id="make-requests"><b>Make (250) requests to ban</b></button>
-    <br><br>
-    <button onclick="openPronote()" id="open-pronote"><b><big>Open Pronote</big></b></button>
-    <br><br>
-    <button onclick="AutomatedModeGUI()" id="automated-mode"><font color = "red"><b>Activate automated mode</b></font></button>
-    <br><br>
-    <button onclick="AutomatedModeNotifyGUI()" id="automated-mode-notifications"><font color = "red"><b>Activate automated mode (with notifications)</b></font></button>
-    <br><br>
-    <button onclick="StopAutomatedMode()" id="stop-automated-mode"><font color = "red">Stop automated mode</font></button>
-  </b>
-  <input type="text" id="etab-prefix-input" placeholder="ID of your school" title="located behind '.index-education.net', for example e212074g in e212074g.index-education.net" name="name" autocomplete="username"/>
-<button onclick="setPrefix()" id="set-etab-prefix">Use ID</button>
-<br><br>
-<p id="chrome-user-agent-alert" style="display: none;"><font color="white">[Chrome] If you need to change your user agent to look like someone else, go to devtools, show network conditions and set the user agent string. This is reset back to use browser default when closing devtools or reloading the page. <b>You can also do this with automated mode.</b></p>
-<br>
-<p>Your user agent :</p></font>
-<style>
-  textarea {
-      border: 1px solid #57009e;
-      padding: 5px;
-      width: 300px;
-      height: 75px;
-  }
-</style>
-<textarea id="user-agent-display" readonly></textarea>
-<br><br>
-<button onclick="NotifyUnban()" id="notify-unbans">Notify for unbans</button>
-<br>
+  <body bgcolor="black">
+    <div id="password" class="hide-content">
+      <input id="password-input" style="position: absolute; left: 50%; bottom: 50%; transform: translate(-50%, -50%); border-width: 2px; border-style: solid; border-radius: 1px; width: 20%; height: 5%; text-align: center;" placeholder="Input password">
+    </div>
+    <div id="UI">
+      <img src="https://www.index-education.com/contenu/img/fr/logo-pronote.svg" alt="Pronote" title="Pronote logo (launch state check)" width="200" height="50" id="pronote-logo" onclick="getPronoteState()"><br>
+      <img src="imgs/cors-disabled.png" id="cors-support-toggle" alt="CORS" title="CORS support toggle" onclick="corsToggle()" class="align-right" style="width: 95px; height: 95px;">
+      <button onclick="makeRequests()" id="make-requests"><b>Make (250) requests to ban</b></button>
+      <br><br>
+      <button onclick="openPronote()" id="open-pronote"><b><big>Open Pronote</big></b></button>
+      <br><br>
+      <button onclick="AutomatedModeGUI()" id="automated-mode"><font color = "red"><b>Activate automated mode</b></font></button>
+      <br><br>
+      <button onclick="AutomatedModeNotifyGUI()" id="automated-mode-notifications"><font color = "red"><b>Activate automated mode (with notifications)</b></font></button>
+      <br><br>
+      <button onclick="StopAutomatedMode()" id="stop-automated-mode"><font color = "red">Stop automated mode</font></button>
+      </b>
+      <input type="text" id="etab-prefix-input" placeholder="ID of your school" title="located behind '.index-education.net', for example e212074g in e212074g.index-education.net" name="name" autocomplete="username"/>
+      <button onclick="setPrefix()" id="set-etab-prefix">Use ID</button>
+      <br><br>
+      <p id="chrome-user-agent-alert" style="display: none;"><font color="white">[Chrome] If you need to change your user agent to look like someone else, go to devtools, show network conditions and set the user agent string. This is reset back to use browser default when closing devtools or reloading the page. <b>You can also do this with automated mode.</b></p>
+      <br>
+      <p>Your user agent :</p></font>
+      <textarea id="user-agent-display" readonly></textarea>
+      <br><br>
+      <button onclick="NotifyUnban()" id="notify-unbans">Notify for unbans</button>
+      <br>
+    </div>
+  </body>
 </html>
