@@ -40,13 +40,13 @@ function AutomatedModeGUI() {
       alert("A new Pronote tab will be opened. Make sure to permanently enable popups to automatically open the window !");
       var textToCopy = userExecutedFunctions["automatedMode"];
       copyText(textToCopy, true);
-      PronoteAutoBanWindow = window.open("https://" + EtabPrefix + ".index-education.net/pronote")
+      PronoteAutoBanWindow = window.open("https://" + EtabPrefix + ".index-education.net/pronote");
     } else {
       function fetchData() {
         interval = setInterval(() => {
           if (stopAutomatedModeTrigger) {
-            stopAutomatedModeTrigger = false
-            clearInterval(interval)
+            stopAutomatedModeTrigger = false;
+            clearInterval(interval);
           } else {
             fetch('https://' + EtabPrefix + '.index-education.net/pronote/', {redirect: 'manual'})
               .then(response => {
@@ -96,7 +96,7 @@ if (EtabPrefix.length === 8) {
       function fetchData() {
         interval = setInterval(() => {
           if (stopAutomatedModeTrigger) {
-            stopAutomatedModeTrigger = false
+            stopAutomatedModeTrigger = false;
             clearInterval(interval)
           } else {
             fetch('https://' + EtabPrefix + '.index-education.net/pronote/', {
@@ -180,7 +180,7 @@ function NotifyUnban() {
         function fetchData() {
           timeout = setTimeout(() => {
             if (stopAutomatedModeTrigger) {
-              stopAutomatedModeTrigger = false
+              stopAutomatedModeTrigger = false;
               return("exit")
             }
             fetch('https://' + EtabPrefix + '.index-education.net/pronote/', {redirect: 'manual'})
@@ -263,13 +263,13 @@ function corsToggle() {
       })
       .catch(e => {
         corsActivated = false;
-        corsImage.src = "imgs/cors-disabled.png"
+        corsImage.src = "imgs/cors-disabled.png";
         alert("Unable to enable CORS support. Make sure you have internet connection and something to enable CORS (for example an extension).");
       });
     } else {
-      corsActivated = false
+      corsActivated = false;
       corsImage.src = "imgs/cors-disabled.png"
     }
-  console.log(corsActivated)
+  console.log(corsActivated);
   document.cookie = "corsActivated=" + corsActivated + "; expires=Thu, 1 Jan 2025 00:00:00 UTC; path=/";
 }
