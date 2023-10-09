@@ -1,4 +1,4 @@
- # PronoteIPblock
+# PronoteIPblock
 Yeah, I made this to block our own IP address. It's pretty fun to see people's reactions I guess.
 
 ### Important:
@@ -14,7 +14,7 @@ If you have enabled CORS mode (for example, you've used a CORS-enabling extensio
 
 The CORS toggle is on the right.
 
-The Pronote logo can also be used to check the forbidden state when you click on it (CORS only). It will automatically check until an error occurs. If coloured, you are not banned. If grey, you are banned. If yellowish, then an error has occurred.
+The Pronote logo can also be used to check the banned state when you click on it (CORS only). It will automatically check until an error occurs. If coloured, you are not banned. If grey, you are banned. If yellowish, then an error has occurred.
 
 The 250 request number is what I find the most reliable while being small, if it doesn't work for you try increasing the number to like 500 by changing the `requestNumber` variable using console.
 
