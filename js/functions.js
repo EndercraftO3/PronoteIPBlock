@@ -39,6 +39,7 @@ function AutomatedModeGUI() {
       alert("You can stop the script by either closing the Pronote tab or by clicking the Stop automated mode button on this page (which will close the Pronote tab).");
       alert("A new Pronote tab will be opened. Make sure to permanently enable popups to automatically open the window !");
       var textToCopy = userExecutedFunctions["automatedMode"].replace("requestNumber", requestNumber);
+      textToCopy = textToCopy.replace("EtabPrefix", EtabPrefix);
       copyText(textToCopy, true);
       PronoteAutoBanWindow = window.open("https://" + EtabPrefix + ".index-education.net/pronote");
     } else {
@@ -89,7 +90,7 @@ if (EtabPrefix.length === 8) {
       alert("You can stop the script by either closing the Pronote tab or by clicking the Stop automated mode button on this page (which will close the Pronote tab).");
       alert("A new Pronote tab will be opened. Make sure to permanently enable popups to automatically open the window !");
       var textToCopy = userExecutedFunctions["automatedModeNotify"].replace("requestNumber", requestNumber);
-      
+      textToCopy = textToCopy.replace("EtabPrefix", EtabPrefix);
       copyText(textToCopy, true);
       PronoteAutoBanNotifyWindow = window.open("https://" + EtabPrefix + ".index-education.net/pronote")
     } else {
@@ -175,6 +176,7 @@ function NotifyUnban() {
         alert("Please note that you will need to enable notifications in Pronote site settings first.");
         alert("A new Pronote tab will be opened. Make sure to permanently enable popups to automatically open the window !");
         var textToCopy = userExecutedFunctions["unbanNotify"];
+        textToCopy = textToCopy.replace("EtabPrefix", EtabPrefix);
         copyText(textToCopy, true);
         PronoteNotifyWindow = window.open("https://" + EtabPrefix + ".index-education.net/pronote");
       } else {
